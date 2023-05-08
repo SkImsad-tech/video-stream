@@ -42,7 +42,7 @@ export default function VideoList({ setLoggedIn }) {
             <CardContent sx={{ flex: 1 }}>
               <video autoPlay controls width="200">
                 <source
-                  src={`http://localhost:3002/api/v1/video/${videoId}`}
+                  src={`http://127.0.0.1:3002/api/v1/video/${videoId}`}
                   type="video/mp4"
                 />
               </video>

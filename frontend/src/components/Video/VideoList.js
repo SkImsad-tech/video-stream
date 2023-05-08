@@ -16,7 +16,7 @@ export default function VideoList({ setLoggedIn }) {
     async function fetchData() {
       try {
         const token = localStorage.getItem("token");
-        const { data } = await axios.get("http://localhost:3002/api/v1/video", {
+        const { data } = await axios.get("http://127.0.0.1:3002/api/v1/video", {
           headers: {
             Authorization: "Bearer " + token,
           },
@@ -35,7 +35,7 @@ export default function VideoList({ setLoggedIn }) {
         {videos.map((video) => {
           return (
             <Grid item xs={12} md={4} key={video._id}>
-              <CardActionArea component="a" href="#">
+              <CardActionArea component="a" href={`/video/${video._id}`}>
                 <Card sx={{ display: "flex" }}>
                   <CardContent sx={{ flex: 1 }}>
                     <Typography component="h2" variant="h5">
