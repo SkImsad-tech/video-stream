@@ -3,7 +3,7 @@ import SignUp from "./Auth/SignUp";
 import Header from "./Navbar/Header";
 import VideoList from "./Video/VideoList";
 import Video from "./Video/Video";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export default function Index(props) {
   const { isLoggedIn, setLoggedIn } = props;
@@ -15,12 +15,15 @@ export default function Index(props) {
           <Routes>
             <Route
               path="/video"
-              element={<VideoList setLoggedIn={setLoggedIn} />}
+              element={
+                <VideoList setLoggedIn={setLoggedIn} Navigate to="/" replace />
+              }
             ></Route>
             <Route
               path="/video/:id"
               element={<Video setLoggedIn={setLoggedIn} />}
             ></Route>
+            <Route path="*" element={<Navigate to="/video" replace />}></Route>
           </Routes>
         ) : (
           <Routes>
@@ -34,6 +37,7 @@ export default function Index(props) {
               path="/signup"
               element={<SignUp setIsLoggedIn={setLoggedIn} />}
             ></Route>
+            <Route path="*" element={<Navigate to="/" replace />}></Route>
           </Routes>
         )}
       </BrowserRouter>
