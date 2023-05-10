@@ -16,11 +16,14 @@ export default function VideoList({ setLoggedIn }) {
     async function fetchData() {
       try {
         const token = localStorage.getItem("token");
-        const { data } = await axios.get("http://127.0.0.1:3002/api/v1/video", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/video`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
         setVideos(data);
       } catch {
         setLoggedIn(false);
@@ -53,7 +56,7 @@ export default function VideoList({ setLoggedIn }) {
                   <CardMedia
                     component="img"
                     sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-                    image={`http://127.0.0.1:3002/${video.coverImage}`}
+                    image={`${process.env.REACT_APP_BACKEND_URL}/${video.coverImage}`}
                     alt="alt"
                   />
                 </Card>

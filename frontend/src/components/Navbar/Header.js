@@ -70,11 +70,15 @@ export default function SearchAppBar({ isLoggedIn }) {
     formData.append("video", video);
     formData.append("cover", cover);
     const token = localStorage.getItem("token");
-    await axios.post("http://127.0.0.1:3002/api/v1/video", formData, {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/api/v1/video`,
+      formData,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
     handleClose();
   };
   return (
